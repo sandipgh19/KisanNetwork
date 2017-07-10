@@ -1,5 +1,6 @@
 package com.example.sandipghosh.kisannetwork;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -52,11 +53,15 @@ public class Conatct extends Fragment {
 
 
     private void getData() {
+
+        final ProgressDialog loading = ProgressDialog.show(getActivity(),"","Please wait...",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST,List_URL ,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.i("MY TEST",response);
+
+                        loading.dismiss();
 
                         showJSON(response);
                     }
@@ -64,13 +69,15 @@ public class Conatct extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+
+                        loading.dismiss();
                         Toast.makeText(getActivity(),error.getMessage().toString(),Toast.LENGTH_LONG).show();
                     }
                 }){
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
 
-                //params.put(KEY_EMAIL,email);
+
                 return params;
             }
 
@@ -82,8 +89,8 @@ public class Conatct extends Fragment {
     private void showJSON(String json){
         ParseJSON pj = new ParseJSON(json);
         pj.parseJSON();
-        CustomAdapter cl = new CustomAdapter(getActivity(), ParseJSON.first,ParseJSON.last,ParseJSON.contact);
-        listView.setAdapter(cl);
+        CustomAdapter ca = new CustomAdapter(getActivity(), ParseJSON.first,ParseJSON.last,ParseJSON.contact);
+        listView.setAdapter(ca);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
