@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/first"
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:text="first"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:textSize="35px"/>
+
+        <TextView
+            android:id="@+id/last"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center"
+            android:text="last"
+            android:textSize="35px"/>
+        <TextView
+            android:id="@+id/contact"
+            android:text="Contact"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="35px"/>
+        <Button
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20px"
+            android:text="Send Message"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+</LinearLayout>
