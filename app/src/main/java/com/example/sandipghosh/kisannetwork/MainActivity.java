@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return "Contact";
                 case 1:
-                    return "Sent";
+                    return "History";
             }
             return null;
         }

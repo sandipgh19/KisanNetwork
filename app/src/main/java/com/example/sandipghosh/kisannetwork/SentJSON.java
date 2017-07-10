@@ -15,9 +15,9 @@ public class SentJSON {
     public static String[] otp;
 
     public static final String JSON_ARRAY = "posts";
-    public static final String KEY_NAME = "first";
-    public static final String KEY_DATE = "last";
-    public static final String KEY_OTP = "contact";
+    public static final String KEY_NAME = "name";
+    public static final String KEY_DATE = "date";
+    public static final String KEY_OTP = "otp";
 
     private JSONArray users = null;
 

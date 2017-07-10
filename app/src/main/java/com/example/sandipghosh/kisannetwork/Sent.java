@@ -29,7 +29,7 @@ public class Sent extends Fragment {
     View rootView;
     ListView listView;
 
-    private static final String Sent_URL = "";
+    private static final String Sent_URL = "https://sandipgh19.000webhostapp.com/kisanNetwork/sent.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
