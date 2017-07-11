@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class ContactInfo extends AppCompatActivity {
 
-    TextView first,last,contact;
+    TextView first,contact;
     String firstName,lastName,contactNo;
     Button button;
     String name;
@@ -35,16 +35,16 @@ public class ContactInfo extends AppCompatActivity {
         lastName = intent.getStringExtra("last");
         contactNo = intent.getStringExtra("contact");
         first = (TextView) findViewById(R.id.first);
-        last = (TextView) findViewById(R.id.last);
         contact = (TextView) findViewById(R.id.contact);
         button = (Button) findViewById(R.id.send);
 
+        name = firstName+" "+lastName;
+
         //set the data
-        first.setText("First Name: "+firstName);
-        last.setText("Last Name: "+lastName);
+        first.setText("Name: "+name);
         contact.setText("Contact No: "+contactNo);
 
-        name = firstName+" "+lastName;
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

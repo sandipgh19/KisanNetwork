@@ -42,6 +42,8 @@ public class Compose extends AppCompatActivity {
     String name,contact;
     Toolbar toolbar;
 
+    String text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +66,14 @@ public class Compose extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                text = otp.getText().toString();
+
+                if(text.isEmpty()) { //input validation
+
+                    Toast.makeText(Compose.this,"Please fill the text",Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 currentDate();
             }
