@@ -25,7 +25,7 @@ public class CustomAdapter extends ArrayAdapter<String> {
         this.last = last;
         this.contact = contact;
     }
-
+    //list item init.
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();

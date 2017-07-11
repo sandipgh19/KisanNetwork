@@ -55,7 +55,7 @@ public class Compose extends AppCompatActivity {
         otp = (EditText) findViewById(R.id.otp);
 
         send = (Button) findViewById(R.id.send);
-
+        //get all the data from privious page
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
         contact = intent.getStringExtra("contact");
@@ -71,16 +71,16 @@ public class Compose extends AppCompatActivity {
 
         randomNo();
     }
-
+    //generate random no
     private void randomNo() {
         Random r = new Random(System.currentTimeMillis());
-        String no = ""+(1 + r.nextInt(2)) * 1000
+        String no = ""+(2 + r.nextInt(2)) * 1000
                 + r.nextInt(100);
 
         otp.setText("Hi. Your OTP is: " +no);
 
     }
-
+    //current system data and time
     public void currentDate() {
 
         Calendar c = Calendar.getInstance();
@@ -91,14 +91,14 @@ public class Compose extends AppCompatActivity {
     }
 
 
-
+    //send to the server
     private void sendData() {
         final ProgressDialog loading = ProgressDialog.show(this,"","Please wait...",false,false);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, DATA_URL,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(String response) { //after successfull response
                         Log.i("MY TEST",response);
 
                         loading.dismiss();
@@ -123,7 +123,7 @@ public class Compose extends AppCompatActivity {
 
                     }
                 },
-                new Response.ErrorListener() {
+                new Response.ErrorListener() { //if getting error from server
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         loading.dismiss();

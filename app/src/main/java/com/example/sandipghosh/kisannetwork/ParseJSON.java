@@ -14,6 +14,7 @@ public class ParseJSON {
     public static String[] last;
     public static String[] contact;
 
+    //array item from JSON
     public static final String JSON_ARRAY = "posts";
     public static final String KEY_FIRST = "first";
     public static final String KEY_LAST = "last";

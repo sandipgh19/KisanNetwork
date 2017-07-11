@@ -26,6 +26,7 @@ public class SentAdapter extends ArrayAdapter<String> {
         this.otp = otp;
     }
 
+    //item data
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();

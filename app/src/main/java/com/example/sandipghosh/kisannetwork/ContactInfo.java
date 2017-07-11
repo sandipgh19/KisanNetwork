@@ -39,6 +39,7 @@ public class ContactInfo extends AppCompatActivity {
         contact = (TextView) findViewById(R.id.contact);
         button = (Button) findViewById(R.id.send);
 
+        //set the data
         first.setText("First Name: "+firstName);
         last.setText("Last Name: "+lastName);
         contact.setText("Contact No: "+contactNo);

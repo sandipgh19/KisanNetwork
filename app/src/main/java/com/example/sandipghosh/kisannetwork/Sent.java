@@ -1,6 +1,9 @@
 package com.example.sandipghosh.kisannetwork;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -38,7 +41,15 @@ public class Sent extends Fragment {
         rootView = inflater.inflate(R.layout.activity_sent, container, false);
         listView = (ListView) rootView.findViewById(R.id.sent_list);
 
-        getData();
+
+        if(isNetworkAvailable()) {
+
+            getData();
+
+        } else {
+
+            Toast.makeText(getActivity(),"Please Check your Internet Connection",Toast.LENGTH_LONG).show();
+        }
 
         return rootView;
     }
@@ -48,7 +59,7 @@ public class Sent extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Sent_URL,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(String response) { //after successful response
                         Log.i("MY TEST",response);
 
                         loading.dismiss();
@@ -56,7 +67,7 @@ public class Sent extends Fragment {
                         showJSON(response);
                     }
                 },
-                new Response.ErrorListener() {
+                new Response.ErrorListener() {  //after error response
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         loading.dismiss();
@@ -74,11 +85,20 @@ public class Sent extends Fragment {
         requestQueue.add(stringRequest);
     }
 
+    //data retrive
     private void showJSON(String json){
         SentJSON sj = new SentJSON(json);
         sj.sentJSON();
         SentAdapter sa = new SentAdapter(getActivity(), SentJSON.name,SentJSON.date,SentJSON.otp);
         listView.setAdapter(sa);
 
+    }
+
+    //network check
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
