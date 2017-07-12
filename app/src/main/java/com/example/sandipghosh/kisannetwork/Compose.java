@@ -109,7 +109,7 @@ public class Compose extends AppCompatActivity {
                     return;
                 }
 
-                if(User.length() !=6) {
+                if(User.length() !=6) { //length checking
 
                     errorMessage = "OTP should be 6 digit value";
                     textInput.setErrorEnabled(true);
