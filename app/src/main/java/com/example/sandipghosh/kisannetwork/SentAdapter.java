@@ -37,7 +37,7 @@ public class SentAdapter extends ArrayAdapter<String> {
 
         textView_name.setText(name[position]);
         textView_date.setText(date[position]);
-        textView_otp.setText(otp[position]);
+        textView_otp.setText("OTP: "+otp[position]);
 
         return listViewItem;
     }

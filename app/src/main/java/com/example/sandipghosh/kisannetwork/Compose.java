@@ -3,6 +3,7 @@ package com.example.sandipghosh.kisannetwork;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -41,8 +42,10 @@ public class Compose extends AppCompatActivity {
     String formattedDate;
     String name,contact;
     Toolbar toolbar;
+    int userOtp;
 
-    String text;
+    String text, User;
+    private TextInputLayout textInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,16 +65,55 @@ public class Compose extends AppCompatActivity {
         name = intent.getStringExtra("name");
         contact = intent.getStringExtra("contact");
 
+        textInput = (TextInputLayout) findViewById(R.id.text_layout);
+
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 text = otp.getText().toString();
+                textInput.setErrorEnabled(false);
+
+                String errorMessage;
 
                 if(text.isEmpty()) { //input validation
 
-                    Toast.makeText(Compose.this,"Please fill the text",Toast.LENGTH_LONG).show();
+                    errorMessage = "Please fill the text";
+                    textInput.setErrorEnabled(true);
+                    textInput.setError(errorMessage);
+
+                    return;
+                }
+
+                try{  //separate otp
+
+                    String[] separated = text.split(":");
+                    User = separated[1].trim();
+
+                } catch (Exception e) {
+                    errorMessage = getString(R.string.correct_format);
+                    textInput.setErrorEnabled(true);
+                    textInput.setError(errorMessage);
+
+                    return;
+                }
+
+                try{ //otp checking
+                    userOtp = Integer.parseInt(User);
+                } catch (Exception e) {
+                    errorMessage = "OTP should be a Numeric Value";
+                    textInput.setErrorEnabled(true);
+                    textInput.setError(errorMessage);
+
+                    return;
+                }
+
+                if(User.length() !=6) {
+
+                    errorMessage = "OTP should be 6 digit value";
+                    textInput.setErrorEnabled(true);
+                    textInput.setError(errorMessage);
                     return;
                 }
 
@@ -147,6 +189,7 @@ public class Compose extends AppCompatActivity {
                 params.put("otp",otp.getText().toString());
                 params.put("contact",contact);
                 params.put("date",formattedDate);
+                params.put("useotp", String.valueOf(userOtp));
 
                 return params;
             }
